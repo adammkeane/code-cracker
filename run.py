@@ -8,3 +8,5 @@ from pyfiglet import Figlet
 
 logo = Figlet(font="5lineoblique")
 print(logo.renderText("Code Cracker"))
+print("Crack the code and win 1 million dollars.")
+print("(actual cash prize may be sigificantly less than that)")
