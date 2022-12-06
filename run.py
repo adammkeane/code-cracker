@@ -9,12 +9,13 @@ from pyfiglet import Figlet
 
 def get_intro_choice():
     """
-    Get intro selection from user: whether they want to play the game, or see how to play first
+    Get intro selection from user: 
+    whether they want to play the game, or see how to play first
     """
     while True:
         print("1 : Play Game")
         print("2 : How to Play\n")
-        print("Type '1' or '2' for the option you want to select, and then press Enter please.")
+        print("Type '1' or '2' for the option you want to select, and then press Enter please.\n")
 
         initial_input = input("Enter your selection here: ")
 
@@ -25,14 +26,14 @@ def get_intro_choice():
             print("\nWhat a fine choice.\n")
             break
 
-    return intro_choice       
+    return int(intro_choice)       
 
 
 def validate_data(choice):
     """
-    Inside the try, converts all string values into integers.
+    Inside the try, converts string value into integer.
     Raises ValueError if strings cannot be converted into int,
-    or if there aren't exactly 6 values.
+    or if they pick an integer that's.
     """
     try:
         choice = int(choice)
@@ -41,16 +42,37 @@ def validate_data(choice):
                 f"\nOnly '1' or '2' required. You provided {choice}"
             )
     except ValueError as e:
-        print("\n---------------------")
+        print("\n-------------------------------------")
         print(f"\nInvalid data: {e}. Please try again.\n")
-        print("---------------------\n")
+        print("-------------------------------------\n")
         return False
 
     return True
 
 
+def how_to_play():
+    print("-----------")
+    print("HOW TO PLAY") 
+    print("-----------\n")
+    print("At the start of each game, a secret 4 digit code with be generated.")
+    print("You'll have 5 attempts to figure out the code.\n")
+    print("For each attempt, enter a 4 digit code.")
+    print("After each attempt, we'll let you know how close you were to cracking the code.\n")
+    print("To do this, we'll reprint your 4 digit attempt, adding colors to each digit.\n")
+    print("Red: this digit is not in the secret code.")
+    print("Yellow: this digit is in the secret code, but is not in the correct postion.")
+    print("Green: this digit is in the secret code, and is in the correct postion!\n")
+    print("------------------------------------------")
+    print("NOW THAT YOU KNOW THE RULES, LET'S PLAY :)") 
+    print("------------------------------------------\n")
+
+
 def main():
-    get_intro_choice()
+    intro_choice = get_intro_choice()  
+    if intro_choice == 1:
+        how_to_play()
+    
+          
 
 logo = Figlet(font="5lineoblique")
 print(logo.renderText("Code Cracker"))
