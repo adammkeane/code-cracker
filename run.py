@@ -16,14 +16,38 @@ def get_intro_choice():
         print("2 : How to Play\n")
         print("Type '1' or '2' for the option you want to select, and then press Enter please.")
 
-        intro_choice = input("Enter your selection here: ")
-        
-        
+        initial_input = input("Enter your selection here: ")
+
+        # In case user literally types something like '1', instead of 1
+        intro_choice = initial_input.replace("'", "")
+     
         if validate_data(intro_choice):
-            print("What a fine choice.")
+            print("\nWhat a fine choice.\n")
             break
 
     return intro_choice       
+
+
+def validate_data(choice):
+    """
+    Inside the try, converts all string values into integers.
+    Raises ValueError if strings cannot be converted into int,
+    or if there aren't exactly 6 values.
+    """
+    try:
+        choice = int(choice)
+        if choice != 1 and choice != 2:
+            raise ValueError(
+                f"\nOnly '1' or '2' required. You provided {choice}"
+            )
+    except ValueError as e:
+        print("\n---------------------")
+        print(f"\nInvalid data: {e}. Please try again.\n")
+        print("---------------------\n")
+        return False
+
+    return True
+
 
 def main():
     get_intro_choice()
