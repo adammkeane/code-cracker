@@ -4,9 +4,10 @@
 # python3 run.py
 
 import random
-# import pyfiglet
+# Import pyfiglet for ascii art
 from pyfiglet import Figlet
-
+# Import colorama for colored text
+from colorama import Fore
 
 def get_intro_choice():
     """
@@ -87,9 +88,10 @@ def main():
     if intro_choice == 1:
         how_to_play()
     code = generate_code()
-    print(code) 
+    print(code)
+    print(Fore.RED + '1' + Fore.YELLOW + '2' + Fore.GREEN + '3') 
 
-        
+
 logo = Figlet(font="5lineoblique")
 print(logo.renderText("Code Cracker"))
 print("Crack the code and win 1 million dollars.")
