@@ -9,6 +9,17 @@ from pyfiglet import Figlet
 # Import colorama for colored text
 from colorama import Fore
 
+
+def welcome():
+    """
+    Introduces user to the game with an ascii logo and (hopefully) some humor
+    """
+    logo = Figlet(font="5lineoblique")
+    print(logo.renderText("Code Cracker"))
+    print("Crack the code and win 1 million dollars.")
+    print("(actual cash prize may be sigificantly less than that)\n")
+
+
 def get_intro_choice():
     """
     Get intro selection from user: 
@@ -17,7 +28,7 @@ def get_intro_choice():
     while True:
         print("1 : Play Game")
         print("2 : How to Play\n")
-        print("Type '1' or '2' for the option you want to select, and then press Enter please.\n")
+        print("Type '1' or '2' for the option you want to select, and then press Enter.\n")
 
         initial_input = input("Enter your selection here: ")
 
@@ -59,14 +70,14 @@ def how_to_play():
     print("-----------")
     print("HOW TO PLAY") 
     print("-----------\n")
-    print("At the start of each game, a secret 4 digit code with be generated.")
+    print("At the start of each game, a secret 4 digit code will be generated.")
     print("You'll have 5 attempts to figure out the code.\n")
     print("For each attempt, enter a 4 digit code.")
     print("After each attempt, we'll let you know how close you were to cracking the code.\n")
-    print("To do this, we'll reprint your 4 digit attempt, adding colors to each digit.\n")
+    print("To do this, we'll reprint your 4 digit code, adding colors to each digit.\n")
     print("Red: this digit is not in the secret code.")
-    print("Yellow: this digit is in the secret code, but is not in the correct postion.")
-    print("Green: this digit is in the secret code, and is in the correct postion!\n")
+    print("Yellow: this digit is in the secret code, but is not in the correct position.")
+    print("Green: this digit is in the secret code, and is in the correct position!\n")
     print("------------------------------------------")
     print("NOW THAT YOU KNOW THE RULES, LET'S PLAY :)") 
     print("------------------------------------------\n")
@@ -84,6 +95,7 @@ def main():
     """.
     Runs all functions of the game
     """
+    welcome()
     intro_choice = get_intro_choice()  
     if intro_choice == 1:
         how_to_play()
@@ -91,10 +103,5 @@ def main():
     print(code)
     print(Fore.RED + '1' + Fore.YELLOW + '2' + Fore.GREEN + '3') 
 
-
-logo = Figlet(font="5lineoblique")
-print(logo.renderText("Code Cracker"))
-print("Crack the code and win 1 million dollars.")
-print("(actual cash prize may be sigificantly less than that)\n")
 
 main()
