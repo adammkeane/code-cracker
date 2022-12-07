@@ -3,6 +3,7 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 # python3 run.py
 
+import random
 # import pyfiglet
 from pyfiglet import Figlet
 
@@ -51,6 +52,9 @@ def validate_data(choice):
 
 
 def how_to_play():
+    """
+    Show user instructions how to play the game
+    """
     print("-----------")
     print("HOW TO PLAY") 
     print("-----------\n")
@@ -67,13 +71,25 @@ def how_to_play():
     print("------------------------------------------\n")
 
 
+def generate_code():
+    """
+    Generates a random list of 4 digits for our secret game code
+    """
+    code = random.sample(range(1,10),4)
+    return code
+
+
 def main():
+    """.
+    Runs all functions of the game
+    """
     intro_choice = get_intro_choice()  
     if intro_choice == 1:
         how_to_play()
-    
-          
+    code = generate_code()
+    print(code) 
 
+        
 logo = Figlet(font="5lineoblique")
 print(logo.renderText("Code Cracker"))
 print("Crack the code and win 1 million dollars.")
