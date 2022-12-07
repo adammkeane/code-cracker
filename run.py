@@ -36,7 +36,9 @@ def get_intro_choice():
         intro_choice = initial_input.replace("'", "")
      
         if validate_intro_choice(intro_choice):
-            print("\nWhat a fine choice.\n")
+            print("\n---------------------")
+            print("What a fine selction.") 
+            print("---------------------\n")
             break
 
     return int(intro_choice)       
@@ -71,16 +73,14 @@ def how_to_play():
     print("HOW TO PLAY") 
     print("-----------\n")
     print("At the start of each game, a secret 4 digit code will be generated.")
-    print("You'll have 4 attempts to figure out the code.\n")
+    print("The secret code will not contain repeat digits.")
+    print("You have 4 attempts to decipher the code.\n")
     print("For each attempt, enter a 4 digit code.")
     print("After each attempt, we'll let you know how close you were to cracking the code.\n")
-    print("To do this, we'll reprint your 4 digit code, adding colors to each digit.\n")
-    print("Red: this digit is not in the secret code.")
-    print("Yellow: this digit is in the secret code, but is not in the correct position.")
-    print("Green: this digit is in the secret code, and is in the correct position!\n")
-    print("------------------------------------------")
-    print("NOW THAT YOU KNOW THE RULES, LET'S PLAY :)") 
-    print("------------------------------------------\n")
+    print("To do this, we'll reprint your 4 digit code, color coding each digit.\n")
+    print(Fore.RED + "Red: " + Fore.RESET + "this digit is not in the secret code." + Fore.RESET)
+    print(Fore.YELLOW + "Yellow: " + Fore.RESET + "this digit is in the secret code, but is not in the correct position.")
+    print(Fore.GREEN + "Green: " + Fore.RESET + "this digit is in the secret code, and is in the correct position!\n" + Fore.RESET)
 
 
 def generate_code():
@@ -93,11 +93,17 @@ def generate_code():
 
 def play_game(code):
     """
-    Gives the user 5 attempts to guess the secret code.
+    Gives the user 4 attempts to guess the secret code.
     """
+    print("--------------------")
+    print("LET THE GAMES BEGIN!") 
+    print("--------------------\n")
+
     i = 1
     while i <= 4:
         attempt = input(f"Attempt {i} : ")
+        if validate_code(attempt) == False:
+            continue
         check_code(code, attempt)
         i += 1   
 
@@ -117,13 +123,32 @@ def check_code(code, attempt):
     print("\n")
 
 
+def validate_code(code):
+    """
+    Validates users guesses during the game
+    """
+    try: 
+        int(code)
+        if len(code) != 4:
+            raise ValueError(
+                f"\n4 digits required for a valid attempt. You provided {len(code)} digits."
+            )
+    except ValueError as e:
+        print("\n-------------------------------------")
+        print(f"\nInvalid data: {e}. Please try again.\n")
+        print("-------------------------------------\n")
+        return False
+    else:
+        return True
+
+
 def main():
     """.
     Runs all functions of the game
     """
     welcome()
     intro_choice = get_intro_choice()  
-    if intro_choice == 1:
+    if intro_choice == 2:
         how_to_play()
     code = generate_code()
     play_game(code)
