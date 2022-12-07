@@ -35,14 +35,14 @@ def get_intro_choice():
         # In case user literally types something like '1', instead of 1
         intro_choice = initial_input.replace("'", "")
      
-        if validate_data(intro_choice):
+        if validate_intro_choice(intro_choice):
             print("\nWhat a fine choice.\n")
             break
 
     return int(intro_choice)       
 
 
-def validate_data(choice):
+def validate_intro_choice(choice):
     """
     Inside the try, converts string value into integer.
     Raises ValueError if strings cannot be converted into int,
@@ -91,6 +91,17 @@ def generate_code():
     return code
 
 
+def play_game(code):
+    """
+    Gives the user 5 attempts to guess the secret code.
+    """
+    i = 1
+    while i <= 5:
+        attempt = input(f"Attempt {i} : ")
+        print(f"\n{attempt}\n")
+        i += 1   
+
+
 def main():
     """.
     Runs all functions of the game
@@ -100,6 +111,7 @@ def main():
     if intro_choice == 1:
         how_to_play()
     code = generate_code()
+    play_game(code)
     print(code)
     print(Fore.RED + '1' + Fore.YELLOW + '2' + Fore.GREEN + '3') 
 
