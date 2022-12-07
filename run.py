@@ -102,10 +102,21 @@ def play_game(code):
     i = 1
     while i <= 4:
         attempt = input(f"Attempt {i} : ")
-        if validate_code(attempt) == False:
+        integer_attempt = [eval(i) for i in attempt]
+        if validate_code(attempt) is False:
             continue
         check_code(code, attempt)
+        if integer_attempt == code:
+            print("----------------------------")
+            print("CONGRATULATIONS. YOU GOT IT!") 
+            print("----------------------------\n")
+            break
         i += 1   
+
+    if i > 4:
+        print("----------------------------------------------")
+        print("Sorry. No more attempts left. Maybe next time.") 
+        print("----------------------------------------------\n")
 
 
 def check_code(code, attempt):
@@ -152,8 +163,6 @@ def main():
         how_to_play()
     code = generate_code()
     play_game(code)
-    print(code)
-    print(Fore.RED + '1' + Fore.YELLOW + '2' + Fore.GREEN + '3') 
 
 
 main()
