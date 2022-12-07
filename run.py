@@ -71,7 +71,7 @@ def how_to_play():
     print("HOW TO PLAY") 
     print("-----------\n")
     print("At the start of each game, a secret 4 digit code will be generated.")
-    print("You'll have 5 attempts to figure out the code.\n")
+    print("You'll have 4 attempts to figure out the code.\n")
     print("For each attempt, enter a 4 digit code.")
     print("After each attempt, we'll let you know how close you were to cracking the code.\n")
     print("To do this, we'll reprint your 4 digit code, adding colors to each digit.\n")
@@ -96,7 +96,7 @@ def play_game(code):
     Gives the user 5 attempts to guess the secret code.
     """
     i = 1
-    while i <= 5:
+    while i <= 4:
         attempt = input(f"Attempt {i} : ")
         check_code(code, attempt)
         i += 1   
@@ -106,7 +106,7 @@ def check_code(code, attempt):
     """
     Compares each digit of attempt to the secret code and gives user color-coded feedback for each digit.
     """
-    print("Feedback : ", end="")
+    print("Feedback  : ", end="")
     for i in (0,1,2,3):
         if int(attempt[i]) == code[i]:
             print(Fore.GREEN + attempt[i] + Fore.RESET, end="")
