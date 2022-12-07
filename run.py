@@ -98,8 +98,23 @@ def play_game(code):
     i = 1
     while i <= 5:
         attempt = input(f"Attempt {i} : ")
-        print(f"\n{attempt}\n")
+        check_code(code, attempt)
         i += 1   
+
+
+def check_code(code, attempt):
+    """
+    Compares each digit of attempt to the secret code and gives user color-coded feedback for each digit.
+    """
+    print("Feedback : ", end="")
+    for i in (0,1,2,3):
+        if int(attempt[i]) == code[i]:
+            print(Fore.GREEN + attempt[i] + Fore.RESET, end="")
+        elif int(attempt[i]) in code:
+            print(Fore.YELLOW + attempt[i] + Fore.RESET, end="")
+        else:
+            print(Fore.RED + attempt[i] + Fore.RESET, end="")      
+    print("\n")
 
 
 def main():
