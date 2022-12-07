@@ -4,9 +4,7 @@
 # python3 run.py
 
 import random
-# Import pyfiglet for ascii art
 from pyfiglet import Figlet
-# Import colorama for colored text
 from colorama import Fore
 
 
@@ -34,14 +32,14 @@ def get_intro_choice():
 
         # In case user literally types something like '1', instead of 1
         intro_choice = initial_input.replace("'", "")
-     
+
         if validate_intro_choice(intro_choice):
             print("\n---------------------")
             print("What a fine selction.") 
             print("---------------------\n")
             break
 
-    return int(intro_choice)       
+    return int(intro_choice)
 
 
 def validate_intro_choice(choice):
@@ -56,9 +54,9 @@ def validate_intro_choice(choice):
             raise ValueError(
                 f"\nOnly '1' or '2' required. You provided {choice}"
             )
-    except ValueError as e:
+    except ValueError as err:
         print("\n-------------------------------------")
-        print(f"\nInvalid data: {e}. Please try again.\n")
+        print(f"\nInvalid data: {err}. Please try again.\n")
         print("-------------------------------------\n")
         return False
 
@@ -70,7 +68,7 @@ def how_to_play():
     Show user instructions how to play the game
     """
     print("-----------")
-    print("HOW TO PLAY") 
+    print("HOW TO PLAY")
     print("-----------\n")
     print("At the start of each game, a secret 4 digit code will be generated.")
     print("The secret code will not contain repeat digits.")
@@ -87,7 +85,7 @@ def generate_code():
     """
     Generates a random list of 4 digits for our secret game code
     """
-    code = random.sample(range(1,10),4)
+    code = random.sample(range(1, 10), 4)
     return code
 
 
@@ -96,26 +94,26 @@ def play_game(code):
     Gives the user 4 attempts to guess the secret code.
     """
     print("--------------------")
-    print("LET THE GAMES BEGIN!") 
+    print("LET THE GAMES BEGIN!")
     print("--------------------\n")
 
     i = 1
     while i <= 4:
         attempt = input(f"Attempt {i} : ")
-        integer_attempt = [eval(i) for i in attempt]
         if validate_code(attempt) is False:
             continue
         check_code(code, attempt)
+        integer_attempt = [eval(i) for i in attempt]
         if integer_attempt == code:
             print("----------------------------")
-            print("CONGRATULATIONS. YOU GOT IT!") 
+            print("CONGRATULATIONS. YOU GOT IT!")
             print("----------------------------\n")
             break
-        i += 1   
+        i += 1
 
     if i > 4:
         print("----------------------------------------------")
-        print("Sorry. No more attempts left. Maybe next time.") 
+        print("Sorry. No more attempts left. Maybe next time.")
         print("----------------------------------------------\n")
 
 
@@ -124,13 +122,13 @@ def check_code(code, attempt):
     Compares each digit of attempt to the secret code and gives user color-coded feedback for each digit.
     """
     print("Feedback  : ", end="")
-    for i in (0,1,2,3):
+    for i in (0, 1, 2, 3):
         if int(attempt[i]) == code[i]:
             print(Fore.GREEN + attempt[i] + Fore.RESET, end="")
         elif int(attempt[i]) in code:
             print(Fore.YELLOW + attempt[i] + Fore.RESET, end="")
         else:
-            print(Fore.RED + attempt[i] + Fore.RESET, end="")      
+            print(Fore.RED + attempt[i] + Fore.RESET, end="")   
     print("\n")
 
 
@@ -138,15 +136,15 @@ def validate_code(code):
     """
     Validates users guesses during the game
     """
-    try: 
+    try:
         int(code)
         if len(code) != 4:
             raise ValueError(
                 f"\n4 digits required for a valid attempt. You provided {len(code)} digits."
             )
-    except ValueError as e:
+    except ValueError as err:
         print("\n-------------------------------------")
-        print(f"\nInvalid data: {e}. Please try again.\n")
+        print(f"\nInvalid data: {err}. Please try again.\n")
         print("-------------------------------------\n")
         return False
     else:
@@ -158,11 +156,12 @@ def main():
     Runs all functions of the game
     """
     welcome()
-    intro_choice = get_intro_choice()  
+    intro_choice = get_intro_choice()
     if intro_choice == 2:
         how_to_play()
     code = generate_code()
     play_game(code)
 
 
-main()
+if __name__ == "__main__":
+    main()
