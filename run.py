@@ -20,13 +20,14 @@ def welcome():
 
 def get_intro_choice():
     """
-    Get intro selection from user: 
+    Get intro selection from user:
     whether they want to play the game, or see how to play first
     """
     while True:
         print("1 : Play Game")
         print("2 : How to Play\n")
-        print("Type '1' or '2' for the option you want to select, and then press Enter.\n")
+        print("Type '1' or '2' for the option you want to select,",
+              "and then press Enter.\n")
 
         initial_input = input("Enter your selection here: ")
 
@@ -35,7 +36,7 @@ def get_intro_choice():
 
         if validate_intro_choice(intro_choice):
             print("\n---------------------")
-            print("What a fine selction.") 
+            print("What a fine selction.")
             print("---------------------\n")
             break
 
@@ -70,15 +71,21 @@ def how_to_play():
     print("-----------")
     print("HOW TO PLAY")
     print("-----------\n")
-    print("At the start of each game, a secret 4 digit code will be generated.")
+    print("At the start of each game, a secret 4 digit code",
+          "will be generated.")
     print("The secret code will not contain repeat digits.")
     print("You have 4 attempts to decipher the code.\n")
     print("For each attempt, enter a 4 digit code.")
-    print("After each attempt, we'll let you know how close you were to cracking the code.\n")
-    print("To do this, we'll reprint your 4 digit code, color coding each digit.\n")
-    print(Fore.RED + "Red: " + Fore.RESET + "this digit is not in the secret code." + Fore.RESET)
-    print(Fore.YELLOW + "Yellow: " + Fore.RESET + "this digit is in the secret code, but is not in the correct position.")
-    print(Fore.GREEN + "Green: " + Fore.RESET + "this digit is in the secret code, and is in the correct position!\n" + Fore.RESET)
+    print("After each attempt, we'll let you know how close you were",
+          "to cracking the code.\n")
+    print("To do this, we'll reprint your 4 digit code, color",
+          "coding each digit.\n")
+    print(Fore.RED + "Red: " + Fore.RESET + "this digit is not in",
+          "the secret code." + Fore.RESET)
+    print(Fore.YELLOW + "Yellow: " + Fore.RESET + "this digit is in the",
+          "secret code, but is not in the correct position.")
+    print(Fore.GREEN + "Green: " + Fore.RESET + "this digit is in the",
+          "secret code, and is in the correct position!\n" + Fore.RESET)
 
 
 def generate_code():
@@ -119,7 +126,8 @@ def play_game(code):
 
 def check_code(code, attempt):
     """
-    Compares each digit of attempt to the secret code and gives user color-coded feedback for each digit.
+    Compares each digit of attempt to the secret code and gives user
+    color-coded feedback for each digit.
     """
     print("Feedback  : ", end="")
     for i in (0, 1, 2, 3):
@@ -128,7 +136,7 @@ def check_code(code, attempt):
         elif int(attempt[i]) in code:
             print(Fore.YELLOW + attempt[i] + Fore.RESET, end="")
         else:
-            print(Fore.RED + attempt[i] + Fore.RESET, end="")   
+            print(Fore.RED + attempt[i] + Fore.RESET, end="")
     print("\n")
 
 
@@ -140,7 +148,8 @@ def validate_code(code):
         int(code)
         if len(code) != 4:
             raise ValueError(
-                f"\n4 digits required for a valid attempt. You provided {len(code)} digits."
+                "4 digits required for a valid attempt.",
+                f"You provided {len(code)} digits."
             )
     except ValueError as err:
         print("\n-------------------------------------")
