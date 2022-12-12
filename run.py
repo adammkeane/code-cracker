@@ -1,8 +1,3 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
-# python3 run.py
-
 import random
 from pyfiglet import Figlet
 from colorama import Fore
@@ -12,6 +7,8 @@ def welcome():
     """
     Introduces user to the game with an ascii logo and (hopefully) some humor
     """
+    # Pyfglit code in welcome function created with help of
+    # this youtube tutoriaL: https://www.youtube.com/watch?v=9O-xpch8y8I
     logo = Figlet(font="5lineoblique")
     print(logo.renderText("Code Cracker"))
     print("Crack the code and win 1 million dollars.")
@@ -92,6 +89,8 @@ def generate_code():
     """
     Generates a random list of 4 digits for our secret game code
     """
+    # Random number code created with help from this webpage:
+    # https://java2blog.com/random-number-between-1-and-10-in-python/
     code = random.sample(range(1, 10), 4)
     return code
 
@@ -110,6 +109,8 @@ def play_game(code):
         if validate_code(attempt) is False:
             continue
         check_code(code, attempt)
+        # This webpage helped me covert the strings of numbers into ints:
+        # https://www.geeksforgeeks.org/python-converting-all-strings-in-list-to-integers/
         integer_attempt = [eval(i) for i in attempt]
         if integer_attempt == code:
             print("----------------------------")
@@ -129,6 +130,8 @@ def check_code(code, attempt):
     Compares each digit of attempt to the secret code and gives user
     color-coded feedback for each digit.
     """
+    # This webpage helped me to print all the digits on the same line:
+    # https://www.tutorialspoint.com/how-to-print-in-same-line-in-python
     print("Feedback  : ", end="")
     for i in (0, 1, 2, 3):
         if int(attempt[i]) == code[i]:
