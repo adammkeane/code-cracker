@@ -23,232 +23,91 @@ Green: this digit is in the secret code, and is in the correct position!
 
 ## Features
 
-### Site wide
-* Navigation Menu
-    * Contains links to the Home page (by clicking on either the site name or the home symbol) and a quesiton mark button to show the How To Play modal, no matter what page their on. It will be responsive on all devices.
-    * This will allow users to easily navigate between the pages within the site on any size device. 
-    * Flex grid used to have the wesbite title centred, and the other icons aligned to the right.
-    * Uses simple black and white color palette, which matches the rest of the site. Reasoning behind this was to give the website a clean, simple and efficient feel.
+### Existing Features
+* Welcome Section
+    * Welcomes user to the game with ASCII art title, some humor, and options to either jump straight into the game or read how to play first, depening on what they input.
+    * Handles invalid input from user by letting the user know their input valid, letting them know how to make it valid, and then gives them another chance to input the selection.
 
-Nav Menu
-![Nav Menu](docs/readme-images/nav-menu.PNG)
+![Welcome Section](docs/readme-images/welcome.PNG)
 
-* Footer
-    * This will contain icons as links to social media websites that will open in new tabs. 
-    * Icons will be accessible to the visually impaired who may be using a screen reader, by the use of aria labels.
-    * This will allow users to a way follow our social media content and stay up to date with our porjects.
+![Welcome Section Invalid Input](docs/readme-images/welcome-invalid.PNG)
 
-![Footer](docs/readme-images/footer.PNG)
+* How To Play Section
+    * Explains how the game works to the user in detail, hopefully in a manner that is easy to understand.
+    * At the end of the How To Play section, a game is automatically started. This is in order to streamline the process for the user and not require them to input anything else to start playing.
 
-* Favicon
-    * A site wide favicon has been implemented with a custom emblem.
-    * This will provide an image in the the tabs header to allow the user to easily identify the website if they have multiple tabs open.
+![How To Play](docs/readme-images/how-to-play.PNG)
 
-![Favicon](docs/readme-images/favicon.PNG)
+* Game Section
+    * A random 4 digit code is generated to start the game, and is hidden from the player.
+    * The user is prompted to guess the code. Their attempt is numbered, to allow to know at a glance how many guesses they have left.
+    * Only a 4 digit number will be accepted as a guess.
+    * Handles invalid input from user by letting the user know their input valid, letting them know how to make it valid, and then gives them another chance to input the selection. An invalid attempt is not counted as an attempt, as that may feel unfair, and the user does not benefit from an invalid attempt, so no need to penalize them for doing so.
+    * Once a user makes a valid guess, the game gives the user a color coded version of their guess. This is to help the user improve their next guess and hopefully provides them with a quick and simple way of seeing how close their code is the the seceret code.
+    * If a user guesses the correct code on any of their attempts, the game will recognize this and show the winning messsage to the user.
+    * Alternatively, if the user runs out of attempts before correctly guessing the code, a message is shown to the user letting them know that they have no more guesses left, and wishes them luck next time.
 
-### Home Page
-* Game Selection
-    * Provides users a selection of games to play.
-    * Wanted to keep this design simple, so that users can quickly see the games on offer and jump in.
+![Game Win](docs/readme-images/win-game.PNG)
 
-![Game Selection](docs/readme-images/games.PNG)
+![Game Lose](docs/readme-images/lose-game.PNG)
 
-* How To Play Modal
-    * Provides user with instructions how to play the game if they would like. 
-    * Doesn't force user to read before playing the game, as this may annoy repeat visiters who know the rules and just want to jump straight into learning.
-    * Simple, clear 'How To Play' button to active the modal. The same modal can be accessed on any web page through the nav bar's question mark symbol.
-    * Hopefully strikes a nice balance between giving all the information a user needs, and not being too verbose or complex.
-    * Greyed out the rest of web page while modal active to keep user's attention on the modal, while still letting them know they can easily get back to the home page when ready.
-    * Modal created with code adapted from this [W3 tutorial.](https://www.w3schools.com/howto/howto_css_modals.asp)
+![Game Invalid 1](docs/readme-images/game-invalid-1.PNG)
 
-![How To Play Button](docs/readme-images/how-to-play-btn.PNG)
-![How To Play Modal](docs/readme-images/modal.PNG)
+![Game Invalid 2](docs/readme-images/game-invalid-2.PNG)
 
-### Capital Cities of Asia Quiz Page
-* Country Box.
-    * At start of game, a country is randomly from all possible countries of Asia. 
-    * After each country question, that previous country is removed from the list of potential options for the game going forward, and the random selection begins again. This is done in order to make sure every will show up over the course of the quiz, and that no country will ever show up twice.
-    * This also ensures that no two quizes are the same. Users wont get bored by the same questions at the same place in each game.
+### Potential Future Features
 
-![Country](docs/readme-images/country.PNG)
+* Have the option to create a code that can contain repeat digits, to make the game more difficult if the user wants.
 
-* Capital Box/Dropdown List
-    * Dropdown list provides user a quick, autocomplete method of getting their capital guesses into the input box.
-    * Users can either start typing their guess, and the dropdown list will appear with all the potential Asian captials that start with what the user has entered so far, or they can click the down arrow icon to the right of the input box in order to see all the potential guess options. This arrow changes directon, depending on the state of the dropdown list, to hint to users of its functionaliy.
-    * This allows users who know the answer to quickly start typing the first letter or two of their guess and then easily select it from the list.
-    * It also allows users who have no idea what the answer is, and would just like to see all the potential options to get their scope focused, a way to see all the options at once.
-    * All options were included so as not to make the game too easy with some process of elimination. 
-    * Once a user selects a dropdown list item, it will quickly appear in the input box, ready to be submit for feedback.
-    * Code from droplist was taken and modified from [here.](https://codingartistweb.com/2021/12/autocomplete-suggestions-on-input-field-with-javascript/)
+## Libraries & Technology Used
 
-![Dropdown](docs/readme-images/dropdown.PNG)
+**Built-in Python Libraries**
 
-* Game Buttons/User Feedback
-    * Provide user with way to check their guesses and/or move onto the next question.
-    * The check answer button does different things, depending on what the user's guess is.
-    * It will check if the user's guess matches the key/value pairing of country/captial object structure. 
-    * If it matches, the user will be given a message in text below the buttons saying so, as well as a green background added to the input box and text feedback.
-    * If user makes a valid selection of one of the dropdown options, but it is not correct, text and background color will generate to say so. This time the color will be red. The text will include what the correct answer is in bold, to allow the user to learn while the question is still fresh in their mind.
-    * Finally, if a user creates an input that does not match one of the dropdown options (an invalid guess), text and background color will generate to say so. This time the color will be yellow. The text will explain what is needed for a valid guess.
-    * All background colors were chose to allow the foreground text to be legible, and also to represent the colors of a traffic light.
-    * The next button allows user to skip to the next question. User doesn't have to make a guess on each question. They can simply skip without answering. This will allow users who are happy that they know a particular capital to just click next until they find one they're not sure about. As they learn more capitals, they'll be able to quickly skip through and target the ones they're weak on. This caters for users who aren't too concerned with their score and are instead just interested in learning all the capitals.
-    * Controlling focus, clearing user input and disabling inputs are all important for these buttons. The aim with this sort of manipulation is make the game as quick, simple and intuitive as possible, eg when a user makes a a guess, the focus is always taken away from the input field (even disabled for correct/incorrect guesses), so that on mobile devices, the keyboard disappears and the user can more clearly see the feedback text.
+*   random
 
-![Game Buttons](docs/readme-images/game-buttons.PNG)  
-![Correct](docs/readme-images/correct.PNG)  
-![Incorrect](docs/readme-images/incorrect.PNG)  
-![Invalid](docs/readme-images/invalid.PNG)  
+The random library was imported to access the built-in method of generating a random number selection. This was used to create the random 4 digit code for each game.
 
-* Score & Question Number Tracker
-    * Provides the user a visual represtation of how well they're doing and and how many questions they've answered/have yet to answer.
-    * For users who are more interested in getting a high score, this is a simple way to bring a potentially competitive game aspect to it.
+**Other**
+* [Colorama](https://pypi.org/project/colorama/) for adding colour to fonts.
 
-![Score](docs/readme-images/score.PNG) 
-
-### Features Left to Implement
-
-* The ability to navigate the dropdown list options with the up and down arrows on the keyboard.
-* The ability for a user to type in the full capital guess in all lower case and for that to deemed correct. Currently and this is case sensitive.
-* Include a streak tracking in the game, so that users can see what's the mosr correct answers in a row they got.
-* The Capital Cities of the Caribbean game mentioned on the home page.
-
-## Technologies
-
-* HTML
-    * The structure of the Website was developed using HTML as the main language.
-* CSS
-    * The site was styled using custom CSS in an external file.
-* Javascript
-    * The site was given interactivity using a mixture of custom and adapted JS in two external files.
-* GitHub
-    * Source code is hosted on GitHub and delpoyed using Git Pages.
-* Git 
-    * Used to commit and push code during the development opf the Website
-* Font Awesome
-    * Icons obtained from https://fontawesome.com/ were used as the Social media links in the footer section. 
-* TinypNG
-    * https://tinypng.com/ was used to reduce the size of the images used throughout the website
-* Favicon.io
-    * favicon files were created at https://favicon.io/
-
-## Testing 
-
-### Responsiveness
-
-All pages were tested to ensure responsiveness on screen sizes from 320px x 634px and upwards as defined in [WCAG 2.1 Reflow criteria for responsive design](https://www.w3.org/WAI/WCAG21/Understanding/reflow.html) on Chrome, Edge, Firefox and Opera browsers.
-
-Steps to test:
-
-1. Open browser and navigate to [Know Ya Countries](https://adammkeane.github.io/know-ya-countries/)
-2. Open the developer tools (right click and inspect)
-3. Set to responsive and decrease width to 320px and height to 634px.
-4. Set the zoom to 50%
-5. Click and drag the responsive window to maximum width
-
-Expected:
-
-Website is responsive on all screen sizes and no images are pixelated or stretched.
-No horizontal scroll is present.
-No elements overlap.
-
-Actual:
-
-The score and question number section on the quiz page went onto 2 lines on the small screen sizes. To fix this, media queries were used to made that text smaller on smaller screens.
-
-Website was also opened on the following devices and no responsive issues were seen:
-
-- Google Pixel 3a
-- Dell XPS 15
-- iPhone Mini
+* [Pyfiglet](https://pypi.org/project/pyfiglet/0.7/) for adding ascii art.
 
 
-### Accessibility
+## Validation & Testing
 
-[Wave Accessibility](https://wave.webaim.org/) tool was used throughout development and for final testing of the deployed website to check for any aid accessibility testing.
+* Passed the Python code through the PEP8 [linter](https://pep8ci.herokuapp.com/#) from Code Institute and got no errors.
 
-Testing was focused to ensure the following criteria were met:
+![Validator](docs/readme-images/validator.PNG)
 
-- All forms have associated labels or aria-labels so that this is read out on a screen reader to users who tab to form inputs
-- Color contrasts meet a minimum ratio as specified in [WCAG 2.1 Contrast Guidelines](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)
-- Heading levels are not missed or skipped to ensure the importance of content is relayed correctly to the end user
-- All content is contained within landmarks to ensure ease of use for assistive technology, allowing the user to navigate by page regions
-- All not textual content had alternative text or titles so descriptions are read out to screen readers
-- HTML page lang attribute has been set
-- Aria properties have been implemented correctly
-- WCAG 2.1 Coding best practices being followed
-
-### Functional Testing
-
-**Navigation Links**
-Testing was performed to ensure all navigation links on the respective pages, navigated to the correct pages as per design. This was done by clicking on the navigation links on each page.
-
-| Navigation Link | Page to Load    |
-| --------------- | --------------- |
-| Know Ya Countries text and Home icon in navigtion bar | index.html      |
-| Capital Cities of Asia Quiz on home page | asia-capitals.html |
-
-Links on all pages navigated to the correct pages as exptected.
-
-**Game Testing**
-| Test Case # | Description                                                                                                                                                               | Steps                                                                                                                                                                                                                                            | Expected                                                                                                                                                                                                                                                                                         | Actual      | Pass/Fail |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- | --------- |
-| 1           | Test correct answer feedback functioning correctly                                                                                                                        | 1\. Start game.<br>2\. Answer question correctly.                                                                                                                                                                                                | 1.Green background color added to input field and text feedback.<br>2\. Text feedback appears saying that we were correct.<br>3\. Input field, dropdown arrow and check answer button disabled.<br>4\. Focus taken away from the input field.                                                    | As expected | Pass      |
-| 2           | Test inccorrect answer feedback functioning correctly                                                                                                                     | 1\. Start game.<br>2\. Answer question incorrectly.                                                                                                                                                                                              | 1\. Red background color added to input field and text feedback.<br>2\. Text feedback appears saying that we were incorrect.<br>3\. Input field, dropdown arrow and check answer button disabled.<br>4\. Focus taken away from the input field.                                                  | As expected | Pass      |
-| 3           | Test invalid answer feedback functioning correctly                                                                                                                        | 1\. Start game.<br>2\. Answer question invalidly (not exactly matching a dropdown list option).                                                                                                                                                  | 1.Yellow background color added to input field and text feedback.<br>2\. Text feedback appears saying that we had invalid guess.<br>3\. Check answer button disabled.<br>4\. All other fields/buttons remained active.<br>5\. Input field emptied.<br>6\. Focus taken away from the input field. | As expected | Pass      |
-| 4           | Test is all countries appeared in the quiz and not double ups.                                                                                                            | 1\. Start game.<br>2\. Answer every question.<br>3\. console.log the country object half way through and before last question of the quiz.                                                                                                       | 1\. Each country that we've already answered is being removed from the countries object.<br>2\. By last question, the console.log should should just one option for the last renaming country.                                                                                                   | As expected | Pass      |
-| 5           | Test score and question number were being updated correctly.                                                                                                              | 1\. Start game.<br>2\. Play full quiz,during which I answering 3 random questions correctly.                                                                                                                                                     | 1\. My score at the end should be 3.<br>2\. The question number at the end should be 50/50.                                                                                                                                                                                                      | As expected | Pass      |
-| 6           | Test Jerusalem didn't appear twice in the dropdown options list, and that the one option was deemed correct for both Israel and Palestine (More details in bugs section). | 1\. Start game.<br>2\. Click dropdown arrow to see all options. If we see only one instance of Jerusalem, move on to step 3.<br>3\. Skip ahead until we see both Israel and Palestine. For both, select the sole Jerusalem option as the answer. | 1\. Jerusalem only appears once in the dropdown list.<br>2\. When its selected as the answer for both Israel and Palestine, we get the correct answer feedback, as mentioned in Test Case #1.                                                                                                    | As expected | Pass      |
-| 7           | Test modal functioning correctly on both home page and capitals of Asia quiz page.                                                                                        | 1\. Load home page.<br>2\. Click how to play button. Close modal if it opens.<br>3\. Click on question mark in the nav bar. Close modal if it opens.<br>1\. Start game.<br>2\. Click on question mark in the nav bar. Close modal if it opens.   | 1\. Modal opens when either the how to button or the question mark is clicked on both pages.<br>2\. Modal can be closed by clicking on the gray out background or the X button at the top right of the modal.                                                                                    | As expected | Pass      |
-| 8           | Test end of quiz functionality.                                                                                                                                           | 1\. Start game.<br>2\. Click next until you reach the end.<br>3\. Click replay button.                                                                                                                                                           | 1.Pink background color added to input field and text feedback.<br>2\. Input field, dropdown arrow, check answer button and next button disabled.<br>3\. Replay button appears. When clicked, it reloads the page and the quiz start again.                                                      | As expected | Pass      |
-
-**Footer Social Media Icons / Links**
-Testing was performed on the Font Awesome Social Media icons in the footer to ensure that each one opened in a new tab and that each one had a hover affect of the orange branding color.
-
-Each item opened a new tab when clicked as expected and correct hover color was present.
-
-### Validator Testing 
-
-- HTML
-  - No errors were found when passing through the official [W3C validator](https://validator.w3.org)
-
-![Index HTML Test](docs/readme-images/index-w3-html-test.PNG)
-
-![Asia Quiz HTML Test](docs/readme-images/asia-quiz-w3-html-test.PNG)
-
-- CSS
-  - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/)
-
-![CSS Test](docs/readme-images/w3c-css1.PNG)
-![CSS Test2](docs/readme-images/w3c-css2.PNG)
-
-- JS
-  - No major errors were found when passing through the [JSHint](https://jshint.com/)
-  - The displayNames variable is actually a function that is being called on an onclick attribute, as opposed to a variable. 
-  - I couldn't figue out the warning about the for in loop.
-
-![Javascript Test](docs/readme-images/jshint.PNG)
+I mainly tested the game by:
+ * Giving valid inputs and confirming the correct behaviour resulted.
+ * Giving invalid inputs and confirming the correct behaviour resulted, eg giving strings were integers were expected. In all cases, the invalid inputs were brought to the user's attention and the user was told how to correct their input.
+ * Tested the game in both my GitPod terminal and the Code Institute Heroku terminal.
 
 ### Bugs
-- Flavicon emblem was not showing up on deployed site, but it was showing up on the site generated from the GitPod workspace. From searching online, after being pointed in the right direction by my very helpful mentor, I found that this was caused by using absolute files paths, instead of relative files paths, for my Flavicon images. When changed to relative files paths, the Flavicon emblems did show up when using the deployed site.
 
-- On mobile devices, when I delete the last character in the guess input field, the check answer button doesn't get disabled. I need to click backspace one extra time, when inout field is already empty, for the check answer button to disable. Couldn't find a fix for this. I experimented with using touchend event as well as the keyup event, but I couldn't get this to work. This problem does not exist on desktop version of the site.
+* Solved Bugs
+    * When printing the color coded guess back to the user, each digit was getting printed on a new line. To fix this, I found out from [this](https://www.tutorialspoint.com/how-to-print-in-same-line-in-python) webpage how to make the game print each digit ont he same line, using the "end" attribute. 
+    * To check if the user had one, I was having trouble comparing the users guess with the correct code. This was because the user's guess was being input as a string and the secret code was made up of integers. [This](https://www.geeksforgeeks.org/python-converting-all-strings-in-list-to-integers/) wesbite helped me fix that by looping through the string and evaluationg each string digit into an integer.
 
-- By playing through a full game, I noticed that options in the dropdown list were getting deleted when the already answered countries were being removed from the games. To fix this, I made the dropdown list options reference a separate data source for its content, an array containing all the captials.
-
-- After adding the score and question number tracking feature, I found that correct answere were being taken away from the total questions. If i get 2 correct scores, I only end up with 48 questions. It turns out I was deleting object keys within the check answer function, as well as in the next function. Removed the deleing from the check answer function and that solved the problem.
-
-- Jerusalem is argued to be the capital of both Israel and Palestine. This meant that two Jerusalem options were showing up in the dropdown list and only one was correct when either Israel or Palestine is asked. To fix this, I added a continue for Palestine in the loop that generated the dropdown list and added a condition to accept any answer with the Jerusalem text as the correct answer for Palestine.
-
-- Found it was annoying having to keep selecting the guess input field with each new question, so used the run game function, triggered by the next button, to control focus and put the focus back to the guess input field with every new question.
-
-- Question number was increasing 1 beyond total number of questions at end of quiz before user inputs disabled. To fix, I had to create a new check in the next function to not increase the question number when it got down to the last country in the country list object.
-
+* Remaining Bugs
+    * The 'Code Cracker' ASCII art on the welcome page is too big for the Heroku terminal, and I couldn't work out how to reduce it to an apporiate size before the project deadline.
 
 ## Deployment
 
+This game was deplyoyed to Code Institute's mock terminal for Heroku.
+
+* Deployment Step:
+    * Created new Heroku app.
+    * In settings, added config var (port:8000) and buildpacks (Python & NodeJS)
+    * Linked the Heroku app to the GitHub Repository.
+    * Manually deployed the game.
+
+View the live game [here.](https://code-cracker-adammkeane.herokuapp.com/)
+
 ### Version Control
 
-The site was created using the Visual Studio code editor and pushed to github to the remote repository ‘tacos-travels’.
+The site was created using the GitPod and pushed to github to the remote repository ‘code-cracker’.
 
 The following git commands were used throughout development to push code to the remote repo:
 
@@ -258,31 +117,9 @@ The following git commands were used throughout development to push code to the 
 
 ```git push``` - This command was used to push all committed code to the remote repository on github.
 
-### Deployment to Github Pages
-
-- The site was deployed to GitHub pages. The steps to deploy are as follows: 
-  - In the GitHub repository, navigate to the Settings tab 
-  - From the menu on left select 'Pages'
-  - From the source section drop-down menu, select the Branch: main
-  - Click 'Save'
-  - A live link will be displayed in a green banner when published successfully. 
-
-The live link can be found here - https://adammkeane.github.io/know-ya-countries/index.html
-
-### Clone the Repository Code Locally
-
-Navigate to the GitHub Repository you want to clone to use locally:
-
-- Click on the code drop down button
-- Click on HTTPS
-- Copy the repository link to the clipboard
-- Open your IDE of choice (git must be installed for the next steps)
-- Type git clone copied-git-url into the IDE terminal
-
-The project will now of been cloned on your local machine for use.
 
 ## Credits 
-Thanks to mentor Daisy McGirr for her help with the project.
+Thanks to mentor Daisy for her help with the project, and the Battleships sample readme from Code Institute.
 
 
 
